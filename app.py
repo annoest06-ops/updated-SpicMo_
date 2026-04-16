@@ -782,7 +782,11 @@ def preview_db_report(value):
     except Exception as e:
         print('ERROR',e)
         return [],str(e)
-
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
+    
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
