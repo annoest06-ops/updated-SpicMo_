@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='create-report.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <title>Admin Report</title>
+</head>
+<body>
+    <div id="page-grid">
+        <div class="page-header">
+            <nav id="top-nav">
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                            <img src="{{ url_for('static', filename='images/SpicMo_logo.png') }}" alt="">
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="main-content">
+                <aside>
+                    <a class="aside-link" href="{{url_for('dashboard_admin')}}">
+                        <span class="icon">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </span>
+                        <span class="icon-text">Speeches</span>
+                    </a>
+                    <a class="aside-link" href="">
+                        <span class="icon"><i class="fa fa-book" aria-hidden="true"></i></span>
+                        <span class="icon-text">Book Reviews</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('admin_report_lb')}}">
+                        <span class="icon"><i class="fa fa-file-alt" aria-hidden="true"></i></span>
+                        <span class="icon-text">Report</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('view_student')}}">
+                        <span class="icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                        <span class="icon-text">Homeroom teachers</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('logout')}}">
+                        <span class="icon"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+                        <span class="icon-text">Logout</span>
+                    </a>
+                </aside>
+                <main>
+                    <div class="dashboard-summary">
+                        <div class="summary-spans">
+                            <div class="summary-info">
+                                <span>
+                                    <h4>Date:</h4>
+                                    <h3>{{year}}</h3>
+                                </span>
+                                <span>
+                                    <h4>Class:</h4>
+                                    <h3>{{classes}}</h3>
+                                </span>
+                                <span>
+                                    <h4>Stream:</h4>
+                                    <h3>{{streams}}</h3>
+                                </span>
+                            </div>
+                            <div class="summary-info">
+                                <span>
+                                    <h4>Teacher:</h4>
+                                    <h3>{{names}}</h3>
+                                </span>
+                            </div> 
+                        </div>
+                        
+                        <div class="summary-spans">
+                            <span>
+                                <h4>Round:</h4>
+                                <h3>{{rounds}}</h3>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="dashboard-record-output">
+                        <fieldset>
+
+                            <form action="/admin_report_sc" method="POST">
+                            <label>from:</label>
+                            <input type="date" name="from">
+                            <label>To:</label>
+                            <input type="date" name="to">
+
+                            <button type="submit" name="report_optional">check</button>
+                            </form>
+                            <table id="report-output-table">
+                                <caption>Best Speakers</caption>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Class</th>
+                                        <th>Stream</th>
+                                        <th>Round</th>
+                                        <th>Score</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--This is to show all list of best round speakers-->
+                                    {%if success%}
+                                    {%for data in success%}
+                                    <tr>
+                                        <td>{{data.name}}</td>
+                                        <td>{{data.class}}</td>
+                                        <td>{{data.stream}}</td>
+                                        <td>{{data.round_circle}}</td>
+                                        <td>{{data.total_score}}</td>
+                                        <td>{{data.date_report}}</td>
+                                    </tr>
+                                    {%endfor%}
+                                    {%else%}
+                                        <p>No data found!</p>
+                                    {%endif%}
+                               </tbody>
+                            </table>
+                            <br><br>
+                            
+                            <form action="/admin_report_sc" method="POST">
+                            <label>from:</label>
+                            <input type="date" name="from">
+                            <label>To:</label>
+                            <input type="date" name="to">
+
+                            <button type="submit" name="report_optional">check</button>
+                            </form>
+                            <table id="report-output-table">
+                                <caption>Optional Award</caption>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Class</th>
+                                        <th>Stream</th>
+                                        <th>Round</th>
+                                        <th>Reason</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    {%if suv%}
+                                    {%for row in suv%}
+                                </thead>
+                                <tbody>
+                                    <!--This is to show all list of best round speakers-->
+                                    <tr>
+                                        <td>{{row.names}}</td>
+                                        <td>{{row.classes}}</td>
+                                        <td>{{row.stream}}</td>
+                                        <td>{{row.round_circle}}</td>
+                                        <td>{{row.reason}}</td>
+                                        <td>{{row.date_report}}</td>
+                                    </tr>
+                                     {%endfor%}
+                                     {%else%}
+                                    <p>no data found</p>
+                                     {%endif%}
+                                    
+                               </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+                </main>
+        </div>
+        <div class="footer">
+            <footer>@2026</footer>
+        </div>
+    </div>
+</body>
+</html>

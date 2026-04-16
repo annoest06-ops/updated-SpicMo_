@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <title>admin-manage</title>
+</head>
+<body>
+    <div id="page-grid">
+        <div class="page-header">
+            <nav id="top-nav">
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                            <img src="{{ url_for('static', filename='images/SpicMo_logo.png') }}" alt="">
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="main-content">
+                <aside>
+                    <a class="aside-link" href="{{url_for('dashboard_admin')}}">
+                        <span class="icon">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </span>
+                        <span class="icon-text">Speeches</span>
+                    </a>
+                    <a class="aside-link" href="">
+                        <span class="icon"><i class="fa fa-book" aria-hidden="true"></i></span>
+                        <span class="icon-text">Book Reviews</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('admin_report_lb')}}">
+                        <span class="icon"><i class="fa fa-file-alt" aria-hidden="true"></i></span>
+                        <span class="icon-text">Report</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('manage_user')}}">
+                        <span class="icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                        <span class="icon-text">Homeroom teachers</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('logout')}}">
+                        <span class="icon"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+                        <span class="icon-text">Logout</span>
+                    </a>
+                </aside>
+           
+                <main>
+                    <div class="actions-bar">
+                        <a class="action-link" href="{{url_for('manage_user')}}">
+                            <span class="action-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                            <span class="action-text">Manage</span>
+                        </a>
+                        <a class="action-link" href="{{url_for('allocate')}}">
+                            <span class="action-icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                            <span class="action-text">Allocate class</span>
+                        </a>
+                    </div>
+                    <div class="form-info">
+                                <span class="allocation-text">Manage teachers</span>
+                            </div>
+                    <div class="dashboard-record-output">
+                        {%if users%}  
+                        <table id="manage-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Class</th>
+                                        <th>Stream</th>
+                                        <th>Password</th>
+                                        <th>Round</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for rows in users%}
+                                    <tr>
+                                        <td>{{rows.names}}</td>
+                                        <td>{{rows.classes}}</td>
+                                        <td>{{rows.streams}}</td>
+                                        <td>{{rows.passwords}}</td>
+                                        <td>{{rows.round_circle}}</td>
+                                        <td>
+                                            <a href="">edit</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {%else%}
+                            <p>No record found!</p>
+                            {%endif%}
+                    </div>
+                </main>
+            </div>
+        <div class="footer">
+            <footer>@2026</footer>
+        </div>
+    </div>
+</body>
+</html>

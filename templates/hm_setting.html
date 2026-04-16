@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='hm_setting.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <title>homeroom setting</title>
+</head>
+<body>
+    <div id="page-grid">
+        <div class="page-header">
+            <nav id="top-nav">
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                            <img src="{{ url_for('static', filename='images/SpicMo_logo.png') }}" alt="">
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="main-content">
+                <aside>
+                    <a class="aside-link" href="{{url_for('homeroom_sheet')}}">
+                        <span class="icon"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                        <span class="icon-text">New Speech</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('homeroom_sheetb')}}">
+                        <span class="icon"><i class="fa fa-book" aria-hidden="true"></i></span>
+                        <span class="icon-text">Book Review</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('new_student')}}">
+                        <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                        <span class="icon-text">New Student</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('view_student')}}">
+                        <span class="icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                        <span class="icon-text">View Students</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('homeroom_report')}}">
+                        <span class="icon"><i class="fa fa-file-alt" aria-hidden="true"></i></span>
+                        <span class="icon-text">Create report</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('hm_setting')}}">
+                        <span class="icon"><i class="fa fa-gear" aria-hidden="true"></i></span>
+                        <span class="icon-text">Settings</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('logout')}}">
+                        <span class="icon"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+                        <span class="icon-text">Logout</span>
+                    </a>
+                </aside>
+                <main>
+                    <div class="dashboard-summary">
+                        <div class="summary-spans">
+                            <div class="summary-info">
+                                <span>
+                                    <h4>Date:</h4>
+                                    <h3>{{year}}</h3>
+                                </span>
+                                <span>
+                                    <h4>Class:</h4>
+                                    <h3>{{classes}}</h3>
+                                </span>
+                                <span>
+                                    <h4>Stream:</h4>
+                                    <h3>{{streams}}</h3>
+                                </span>
+                            </div>
+                            <div class="summary-info">
+                                <span>
+                                    <h4>Teacher:</h4>
+                                    <h3>{{names}}</h3>
+                                </span>
+                            </div> 
+                        </div>
+                        <div class="summary-spans">
+                            <span>
+                                <h4>Round:</h4>
+                                <h3>{{rounds}}</h3>
+                            </span>
+                        </div>
+                    </div>
+                    <form action="/homeroom_setting" method="POST" id="filter-form">
+                        <select name="year" value="{{year}}">
+                            <option>Year</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+                        </select>
+                        <select name="round" value="{{rounds}}">
+                            <option>Round</option>
+                            <option value="1">Round 1</option>
+                            <option value="2">Round 2</option>
+                            <option value="3">Round 3</option>
+                            <option value="4">Round 4</option>
+                            <option value="5">Round 5</option>
+                            <option value="6">Round 6</option>
+                        </select>
+                        <span class="text">Change Password:</span>
+                        <span class="input">
+                            <input type="text" name="password" value="{{passey}}">
+                        </span>
+                        
+                        <button type="submit" class="button" name="change_homeroom">Save</button>
+                        <button type="reset" class="button" name="search-records" value="Clear">Clear</button>
+                    </form>
+                    
+                    <div class="dashboard-record-output">
+                            <form action="/homeroom_setting" method="POST" id="setting-form">
+                            <table id="settings-table">
+                                <thead>
+                                    <tr>
+                                        <th>SjNumber</th>
+                                        <th>Name</th>
+                                        <th>Class</th>
+                                        <th>Stream</th>
+                                        <th>Round</th>
+                                        <th>Year</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {%if success%}
+
+                                    {%for row in success%}
+                                    <tr>
+                                        <td><input type="text" name="sjnumber" value="{{row.sjnumber}}"></td>
+                                        <td><input type="text" name="name" value="{{row.name}}"></td>
+                                        <td>
+                                           <select name="classes" value="{{row.classes}}">
+                                                <option value="FORM1">Form1</option>
+                                                <option value="FORM2">Form2</option>
+                                                <option value="FORM3">Form3</option>
+                                                <option value="FORM4">Form4</option>
+                                                <option value="FORM5">Form5</option>
+                                                <option value="FORM6">Form6</option>
+                                            </select> 
+                                        </td>
+                                        <td>
+                                            <select name="stream" value="{{row.stream}}">
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                                <option value="C">C</option>
+                                                <option value="D">D</option>
+                                                <option value="E">E</option>
+                                                <option value="F">F</option>
+                                                <option value="G">G</option>
+                                                <option value="H">H</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="rounds" value="{{row.round_circle}}"> 
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="year" value="{{row.year_speech}}">
+                                                <option value="2026">2026</option>
+                                                <option value="2027">2027</option>
+                                                <option value="2028">2028</option>
+                                                <option value="2029">2029</option>
+                                                <option value="2030">2030</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" name="status" value="FALSE">
+                                        </td>
+                                    </tr>
+
+                                    {%endfor%}
+                                    {%endif%}
+                                    
+                                   
+                               </tbody>
+                            </table>
+
+                            <button type="submit" name="change_student">save</button>
+                            </form>
+                    </div>
+                </main>
+        </div>
+        <div class="footer">
+            <footer>@2026</footer>
+        </div>
+    </div>
+</body>
+</html>

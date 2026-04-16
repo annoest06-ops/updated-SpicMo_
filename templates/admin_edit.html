@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h2>Edit information</h2>
+
+
+        <p>search homeroom:</p>
+            <form action="/edit_fetch" method="POST">
+            
+            <select name="name">
+                 
+                
+                 
+                
+                <option value="">username</option>
+                {%if names%}
+                 {%for name in names%}
+                <option value="{{name.names}}">{{name.names}}</option>
+                {%endfor%}
+                {%endif%}
+                {%if not names%}
+                <option value="">No homerooms available</option>
+                {%endif%}
+            </select>
+            
+            <button type="submit">view</button>
+        </form>
+        <hr>
+        <form action="" method="POST">
+            
+
+            <br>
+
+            <br>
+            <label>homeroom name:</label>
+            {%if fetch%}
+            <input type="text" name="name" value="{{fetch.names}}">
+            <br><br>
+
+
+            <label>class:</label>
+            <input type="text" name="class" value="{{fetch.classes}}">
+
+            <br><br>
+            <label>stream:</label>
+            <input type="text" name="stream" value="{{fetch.streams}}">
+            <br><br>
+
+            <label>password:</label>
+            <input type="text" name="password" value="{{fetch.passwords}}"><br><br>
+
+            <label>year:</label><br><br>
+            <select name="year">
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+            </select>
+
+            <label>round:</label>
+                   <select name="round"> <br><br>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+
+            </select>
+
+            {%endif%}
+            {%if not fetch%}
+            <p>no  data available</p>
+            {%endif%}
+            
+            <button type="submit">save</button>
+        </form>
+    </body>
+</html>

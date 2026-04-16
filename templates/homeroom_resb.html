@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <title>Submitted Successfully</title>
+</head>
+<body>
+    <div class="header-links-container">
+        <a class="header-links" href="">
+            <span>
+                <span>
+                    <img src="{{ url_for('static', filename='images/SpicMo_logo.png') }}" alt="">
+                </span> 
+            </span>
+        </a>
+    </div>
+    <div class="login-container">
+        <div class="allocation-info">
+            <span class="icon"><i class="fa fa-check" aria-hidden="true"></i></span>
+            <span class="allocation-text">Book Review Submitted Successfully</span>
+        </div>
+            <fieldset>
+                <div>
+                    <span class="icon">Date:</span>
+                <span class="allocation-text">{{date}}</span>
+                </div>
+                <div>
+                    <span class="icon">Student Name:</span>
+                <span class="allocation-text">{{name}}</span>
+                </div>
+                <div>
+                    <span class="icon">Book Title</span>
+                    <span class="allocation-text">{{topic}}</span>
+                </div>
+                <div>
+                    <span class="icon">Time Spent:</span>
+                    <span class="allocation-text">{{time_spent}}</span>
+                </div>
+                <div>
+                    <span class="icon">Time Grade:</span>
+                <span class="allocation-text">{{grade}}</span>
+                </div>
+                <div>
+                    <span class="icon">Book Review Quality:</span>
+                    <span class="allocation-text">{{speech_grade}}</span>
+                </div>
+                <div>
+                    <span class="icon">New Word Grade:</span>
+                    <span class="allocation-text">{{section2_marks}}</span>
+                </div>
+                <div>
+                    <span class="icon">Comments:</span>
+                    <span class="allocation-text">{{comment}}</span>
+                </div>
+            </fieldset>
+        {%if error%}
+       <p style="color: red">
+        {{error}}
+        </p>
+        {%endif%}
+    </div>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='spoken-speech-form.css') }}">
+    <title>New Speech</title>
+</head>
+<body>
+    <div id="page-grid">
+        <div class="page-header">
+            <nav id="top-nav">
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                            <img src="{{ url_for('static', filename='images/SpicMo_logo.png') }}" alt="">
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="main-content">
+                <aside>
+                    <a class="aside-link" href="{{url_for('homeroom_sheet')}}">
+                        <span class="icon"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                        <span class="icon-text">New Speech</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('homeroom_sheetb')}}">
+                        <span class="icon"><i class="fa fa-book" aria-hidden="true"></i></span>
+                        <span class="icon-text">Book Review</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('homeroom_sheetb')}}">
+                        <span class="icon"><i class="fa fa-language" aria-hidden="true"></i></span>
+                        <span class="icon-text">Swahili Speakers</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('new_student')}}">
+                        <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                        <span class="icon-text">New Student</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('view_student')}}">
+                        <span class="icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                        <span class="icon-text">View Students</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('homeroom_report')}}">
+                        <span class="icon"><i class="fa fa-file-alt" aria-hidden="true"></i></span>
+                        <span class="icon-text">Create report</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('hm_setting')}}">
+                        <span class="icon"><i class="fa fa-gear" aria-hidden="true"></i></span>
+                        <span class="icon-text">Settings</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('logout')}}">
+                        <span class="icon"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+                        <span class="icon-text">Logout</span>
+                    </a>
+                </aside>
+                <main>
+                    <div class="dashboard-summary">
+                        <div class="summary-spans">
+                            <div class="summary-info">
+                                <span>
+                                    <h4>Date:</h4>
+                                    <h3>{{year}}</h3>
+                                </span>
+                                <span>
+                                    <h4>Class:</h4>
+                                    <h3>{{classes}}</h3>
+                                </span>
+                                <span>
+                                    <h4>Stream:</h4>
+                                    <h3>{{streams}}</h3>
+                                </span>
+                            </div>
+                            <div class="summary-info">
+                                <span>
+                                    <h4>Teacher:</h4>
+                                    <h3>{{names}}</h3>
+                                </span>
+                            </div> 
+                        </div>
+                        <div class="summary-spans">
+                            <span>
+                                <h4>Round:</h4>
+                                <h3>{{rounds}}</h3>
+                            </span>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="spoken-speech-form-container">
+                        <form action="/homeroom_sheet" method="POST" id="new-speech-form">
+                            <fieldset>
+                                <span class="text">Name:</span>
+                                <span class="input">
+                                    <select name="name">
+                                        {%if get_names%}
+
+                                        {%for names in get_names%}
+                                        /*<option value="{{names.name}}">{{names.name}}</option>
+                                        {%endfor%}
+                                        {%endif%}
+                                        {%if not get_names%}
+                                        <option>No name found</option>
+                                        {%endif%}
+                                    </select>
+                                </span>
+                                <span class="text">Speech Title:</span>
+                                <span class="input">
+                                    <input type="text" name="topic" required>
+                                </span>
+                                <div>
+                                    <span class="text">Date:</span>
+                                    <span class="input">
+                                        <input type="date" name="date_speech" required>
+                                    </span>
+                                    <span class="text">Time Spent:</span>
+                                    <span class="input">
+                                        <input type="number" name="time_spent" required>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="text">Time Grade:</span>
+                                    <span class="input">
+                                        <select name="time_grade">
+                                            <option value="">Select Grade</option>
+                                            <option value="5">A</option>
+                                            <option value="4">B</option>
+                                            <option value="3">C</option>
+                                        </select>
+                                    </span>
+                                    <span class="text">Speech Quality:</span>
+                                    <span class="input">
+                                        <select name="speech_grade">
+                                            <option value="">Select Grade</option>
+                                            <option value="5">A</option>
+                                            <option value="4">B</option>
+                                            <option value="3">C</option>
+                                        </select>
+                                    </span>
+                                </div>
+                                <span class="text">Comments:</span>
+                                <span class="input">
+                                    <textarea name="comment" rows="3" cols="50" required></textarea>
+                                </span>
+                                <span class="button">
+                                    <button onclick="validateNewSpeechForm()" type="submit">Save Speech</button>
+                                    <button type="reset">Clear</button>
+                                </span>
+                            </fieldset>
+                        </form>
+                    </div>
+                </main>
+        </div>
+        <div class="footer">
+            <footer>@2026</footer>
+        </div>
+    </div>
+    <script src="C:\Users\sj02093\Desktop\programming\python\spicMo_\static\js.js"></script>
+</body>
+</html>

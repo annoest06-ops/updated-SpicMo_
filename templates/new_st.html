@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <title>Manage Class</title>
+</head>
+<body>
+    <div id="page-grid">
+        <div class="page-header">
+            <nav id="top-nav">
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                            <img src="{{ url_for('static', filename='images/SpicMo_logo.png') }}" alt="">
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="main-content">
+                <aside>
+                    <a class="aside-link" href="{{url_for('homeroom_sheet')}}">
+                        <span class="icon"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                        <span class="icon-text">New Speech</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('homeroom_sheetb')}}">
+                        <span class="icon"><i class="fa fa-book" aria-hidden="true"></i></span>
+                        <span class="icon-text">Book Review</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('new_student')}}">
+                        <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                        <span class="icon-text">New Student</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('view_student')}}">
+                        <span class="icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                        <span class="icon-text">View Students</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('homeroom_report')}}">
+                        <span class="icon"><i class="fa fa-file-alt" aria-hidden="true"></i></span>
+                        <span class="icon-text">Create report</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('hm_setting')}}">
+                        <span class="icon"><i class="fa fa-gear" aria-hidden="true"></i></span>
+                        <span class="icon-text">Settings</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('logout')}}">
+                        <span class="icon"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+                        <span class="icon-text">Logout</span>
+                    </a>
+                </aside>
+                <main>
+                    <div class="form-info">
+                        <span class="icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                        <span class="allocation-text">Manage Class</span>
+                    </div>
+                    <div class="dashboard-record-output">
+                        <form action="/new_student" method="POST" id="manage-student-form">
+                           <fieldset>
+                                <span class="text">Sj Number:</span>
+                                <span class="input">
+                                    <input type="text" name="sjnumber" required>
+                                </span>
+                                <span class="text">Name:</span>
+                                <span class="input">
+                                    <input type="text" name="name" required>
+                                </span>
+                                <div>
+                                    <span class="text">Class:</span>
+                                    <select name="classes">
+                                        <option value="">classes</option>
+                                        <option value="FORM1">Form 1</option>
+                                        <option value="FORM2">Form 2</option>
+                                        <option value="FORM3">Form 3</option>
+                                        <option value="FORM4">Form 4</option>
+                                        <option value="FORM5">Form 5</option>
+                                        <option value="FORM6">Form 6</option>
+                                    </select>
+                                    <span class="text">stream:</span>
+                                    <select name="stream">
+                                        <option value="A">Stream</option>
+                                        <option value="B">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                        <option value="E">E</option>
+                                        <option value="F">F</option>
+                                        <option value="G">G</option>
+                                        <option value="H">H</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <span class="text">Round:</span>
+                                    <select  name="circle">
+                                        <option value="">Round</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select><br><br>
+                                    <span class="text">Year:</span>
+                                    <select name=year_speech>
+                                        <option value="">Year</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2027">2027</option>
+                                        <option value="2028">2028</option>
+                                        <option value="2029">2029</option>
+                                        <option value="2030">2030</option>
+                                    </select><br><br>
+                                    </div>
+                                    <div>
+                                    <span class="text">Confirm:</span>
+                                        <input type="checkbox" name="confirm" value="FALSE"><br><br>
+                                    </div>
+                                        <span class="button">
+                                            <button type="submit" onclick="return validateManageStudentForm()">Save</button>
+                                            <button type="reset">Clear</button>
+                                        </span>
+                            </fieldset>
+                        </form>
+                    </div>
+                </main>
+            </div>
+        <div class="footer">
+            <footer>@2026</footer>
+        </div>
+    </div>
+    <script src="C:\Users\sj02093\Desktop\programming\python\spicMo_\static\js.js"></script>
+</body>
+</html>
+
+
+
+

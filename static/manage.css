@@ -1,0 +1,191 @@
+.dashboard-record-output{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    height: calc(100vh - 180px);
+}
+
+.actions-bar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.action-link{
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #1E3A8A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.action-link:hover{
+    cursor: pointer;
+    background-color: #3B82F6;
+}
+.form-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.allocation-text{
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+
+/*..manage homeroom output table*/
+#manage-table{
+    display: table;
+    width: 90%;
+    border: none;
+    border-collapse: separate;
+    border-radius: 5px;
+}
+#manage-table thead th{
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    color: white;
+    background-color: #1E3A8A;
+}
+#manage-table td{
+    padding: 2px;
+}
+#manage-table tbody tr:nth-child(even){
+    background: #99b6e6;
+}
+#manage-table tbody tr td:first-child{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#manage-table tbody tr td:last-child{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#manage-table tbody tr:hover{
+    cursor: pointer;
+    color: white;
+    background-color: #1E3A8A;
+}
+#manage-table tbody tr td:last-child:hover{
+    cursor: pointer;
+    color: white;
+    background-color: red;
+}
+/*.......*/
+
+/*..homeroom allocation form*/
+form{
+    align-self: center;
+    width: 70%;
+}
+.form-info{
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    color: #1E3A8A;
+    gap: 10px;
+}
+form fieldset{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 2px solid #1E3A8A;
+    border-radius: 10px;
+    gap: 5px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+form div{
+    display: flex;
+    gap: 3px;
+    margin-top: 5px;
+}
+form input[type ="text"]{
+    height: 30px;
+    width: 90%;
+}
+form input[type = "text"]:hover,
+form input[type = "text"]:focus,
+form input[type = "text"]:active
+{
+    padding-left: 5px;
+    border: 2px solid #1E3A8A;
+    border-radius: 5px;
+    outline: none;
+}
+
+form input[type = "password"]{
+    height: 30px;
+    width: 90%;
+}
+form input[type = "password"]:hover,
+form input[type = "password"]:focus,
+form input[type = "password"]:active{
+    padding-left: 5px;
+    border: 2px solid #1E3A8A;
+    border-radius: 5px;
+    outline: none;
+}
+
+form input[name ="confirm"]{
+    width: 50px;
+    height: 30px;
+    border: 1px solid #3B82F6;
+    border-radius: 5px;
+}
+
+form select[name ="class"]{
+    width: 90px;
+    height: 30px;
+    border-radius: 5px;
+}
+form select[name ="S    tream"]{
+    width: 40px;
+    height: 30px;
+    border-radius: 5px;
+}
+form select:hover,
+form select:focus,
+form select:active{
+    transform: scale(1.05);
+    border: 2px solid #1E3A8A; 
+    border-radius: 5px;   
+    outline: none;
+}
+
+form button{
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    color: white;
+    background-color: #1E3A8A;
+    margin-top: 5px;
+}
+form button:hover{
+    background-color: #3B82F6;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+span.text{
+    font-size: 20px;
+    font-weight: bold;
+    color: #1E3A8A;
+    margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+
+

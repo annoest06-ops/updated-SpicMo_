@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard-admin.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <title>dashboard-admin</title>
+</head>
+<body>
+    <div id="page-grid">
+        <div class="page-header">
+            <nav id="top-nav">
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                            <img src="{{ url_for('static', filename='images/SpicMo_logo.png') }}" alt="">
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="main-content">
+                <aside>
+                    <a class="aside-link" href="{{url_for('dashboard_admin')}}">
+                        <span class="icon">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </span>
+                        <span class="icon-text">Speeches</span>
+                    </a>
+                    <a class="aside-link" href="">
+                        <span class="icon"><i class="fa fa-book" aria-hidden="true"></i></span>
+                        <span class="icon-text">Book Reviews</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('admin_report_lb')}}">
+                        <span class="icon"><i class="fa fa-file-alt" aria-hidden="true"></i></span>
+                        <span class="icon-text">Report</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('manage_user')}}">
+                        <span class="icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                        <span class="icon-text">Homeroom teachers</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('logout')}}">
+                        <span class="icon"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+                        <span class="icon-text">Logout</span>
+                    </a>
+                </aside>
+                <main>
+                    <form id="filter-form" action="/dashboard_admin" method="POST">
+                        <input type="date" name="date">
+                        <button type="submit" class="button" name="speech_round" value="Search">Search</button>
+                        <button type="reset" class="button" name="search-records" value="Clear">Clear</button>
+                    </form>
+                    <div class="dashboard-summary">
+                        <div class="summary-spans">
+                            <div class="summary-info">
+                                <span>
+                                    <h4>Date:</h4>
+                                    <h3>{{years}}</h3>
+                                </span>
+                                <span>
+                                    <h4>Role:</h4>
+                                    <h3>{{roles}}</h3>
+                                </span>
+                                <span>
+                                    <h4>Name:</h4>
+                                    <h3>{{names}}</h3>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="dashboard-record-output">
+                        <fieldset>
+                            <table id="dashboard-record-output-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Topic</th>
+                                        <th>Date</th>
+                                        <th>Time grade</th>
+                                        <th>Quality grade</th>
+                                        <th>Round</th>
+                                        <th>Class</th>
+                                        <th>Stream</th>
+                                        <th>Total Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {%if cool%}
+                                {%for data in cool%}                                  
+                                    <tr>
+                                        <td>{{data.name}}</td>
+                                        <td>{{data.topic}}</td>
+                                        <td>{{data.date_speech}}</td>
+                                        <td>{{data.time_grade}}</td>
+                                        <td>{{data.speech_quality}}</td>
+                                        <td>{{data.round_circle}}</td>
+                                        <td>{{data.classes}}</td>
+                                        <td>{{data.stream}}</td>
+                                        <td>{{data.total_score}}</td>
+                                    </tr>
+                                {%endfor%}
+                               </tbody>
+                            </table>
+                            {%else%}
+                            <p>no data found.</p>
+                            {%endif%}
+                        </fieldset>
+                    </div>
+                </main>
+        </div>
+        <div class="footer">
+            <footer>@2026</footer>
+        </div>
+    </div>
+</body>
+</html>

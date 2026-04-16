@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='create-report.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <title>Homeroom Report</title>
+</head>
+<body>
+    <div id="page-grid">
+        <div class="page-header">
+            <nav id="top-nav">
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                            <img src="{{ url_for('static', filename='images/SpicMo_logo.png') }}" alt="">
+                        </span>
+                    </a>
+                </div> 
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="main-content">
+                <aside>
+                    <a class="aside-link" href="{{url_for('homeroom_sheet')}}">
+                        <span class="icon"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                        <span class="icon-text">New Speech</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('homeroom_sheetb')}}">
+                        <span class="icon"><i class="fa fa-book" aria-hidden="true"></i></span>
+                        <span class="icon-text">Book Review</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('new_student')}}">
+                        <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                        <span class="icon-text">New Student</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('view_student')}}">
+                        <span class="icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                        <span class="icon-text">View Students</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('homeroom_report')}}">
+                        <span class="icon"><i class="fa fa-file-alt" aria-hidden="true"></i></span>
+                        <span class="icon-text">Create report</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('hm_setting')}}">
+                        <span class="icon"><i class="fa fa-gear" aria-hidden="true"></i></span>
+                        <span class="icon-text">Settings</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('logout')}}">
+                        <span class="icon"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+                        <span class="icon-text">Logout</span>
+                    </a>
+                </aside>
+                <main>
+                    <div class="dashboard-summary">
+                        <div class="summary-spans">
+                            <div class="summary-info">
+                                <span>
+                                    <h4>Date:</h4>
+                                    <h3>{{year}}</h3>
+                                </span>
+                                <span>
+                                    <h4>Class:</h4>
+                                    <h3>{{classes}}</h3>
+                                </span>
+                                <span>
+                                    <h4>Stream:</h4>
+                                    <h3>{{streams}}</h3>
+                                </span>
+                            </div>
+                            <div class="summary-info">
+                                <span>
+                                    <h4>Teacher:</h4>
+                                    <h3>{{names}}</h3>
+                                </span>
+                            </div> 
+                        </div>
+                        
+                        <div class="summary-spans">
+                            <span>
+                                <h4>Round:</h4>
+                                <h3>{{rounds}}</h3>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="report-record-output">
+                        <fieldset>
+                        <form action="/homeroom_report" method="POST" id="best-speakers-form">
+                            <table id="report-output-table">
+                                <caption>Best Speakers</caption>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Class</th>
+                                        <th>Stream</th>
+                                        <th>Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--This is to show all list of best round speakers-->
+                                    {%if hoorey%}
+                                    {%for data in hoorey%}
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="name" value="{{data.name}}">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="class" value="{{data.classes}}">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="stream" value="{{data.stream}}">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="score" value="{{data.average_score}}">
+                                        </td>
+                                    </tr>
+                                    {%endfor%}
+                                    {%else%}
+                                    <tr>
+                                        <p>No data found!</p>
+                                    </tr>
+                                    {%endif%}
+                               </tbody>
+                            </table>
+                            <button type="submit">Submit</button>
+                            <br><br>
+                        </form>
+
+                        <form id="most-improved-form">
+                            <table id="report-output-table">
+                                <caption>Most Improved</caption>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Class</th>
+                                        <th>Stream</th>
+                                        <th>Current Score</th>
+                                        <th>Previous Score</th>
+                                        <th>Improved Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--This is to show all list of best round speakers-->
+                                    <tr>
+                                        <td>
+                                            <input type="text" name="name" value="">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="class" value="">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="stream" value="">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="current_score" value="">
+                                        </td>
+                                        <td>
+                                            <input  type="text" name="previous_score" value="">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="improved_score" value="">
+                                        </td>
+                                    </tr>
+                                    
+                               </tbody>
+                            </table>
+                            <button type="submit">Submit</button>
+                        </form>
+                        </fieldset>
+                    <div class="optional-winner-container">
+                        <form id="winner-report-form" action="">
+                        
+                            <span class="text">Optional Award To:</span>
+                            <span class="input">
+                                <input type="text" name="winner_name" placeholder="  --Student's name--">
+                            </span>
+                            <span class="text">Reason:</span>
+                            <span class="input">
+                                <textarea rows="5" name="optional-award-reason" id=""></textarea>
+                            </span>
+                            <span class="text">Class:</span>
+                            <span class="input">
+                                <input type="text" name="class" value="{{classes}}" readonly><br><br>
+                            </span>
+                            <span class="text">Stream:</span>
+                            <span class="input">
+                                <input type="text" name="stream" value="{{streams}}" readonly><br><br>
+                            </span>
+                            <span class="text">Round:</span>
+                            <span class="input">
+                                <input type="text" name="rounds" value="{{rounds}}" readonly><br><br>
+                            </span>
+                            <span class="text">Date:</span>
+                            <span class="input">
+                                <input type="date" name="date" placeholder="  --Date--">
+                            </span>
+                            <span>
+                                <button type="submit">Submit</button>
+                            </span>
+                        </form>
+                    </div>
+                    </div>
+                </main>
+        </div>
+        <div class="footer">
+            <footer>@2026</footer>
+        </div>
+    </div>
+</body>
+</html>

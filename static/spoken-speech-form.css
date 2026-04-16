@@ -1,0 +1,127 @@
+.spoken-speech-form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 240px);
+    overflow: auto;
+}
+
+hr{
+    height: 2px;
+    width: 100%;
+    background-color: #3B82F6;
+}
+
+.spoken-speech-form-container fieldset{
+    max-height: calc(100vh - 240px);
+    border: 2px solid #1E3A8A;
+    overflow: auto;
+}
+
+form{
+    width: 75%;
+}
+form fieldset{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 2px solid #1E3A8A;
+    border-radius: 10px;
+    gap: 5px;
+    padding: 25px;
+    box-sizing: border-box;
+}
+form div{
+    display: flex;
+    gap: 3px;
+    margin-top: 5px;
+    flex-wrap: wrap;
+}
+form input[type ="text"]{
+    height: 30px;
+    width: 90%;
+}
+form input[type = "text"]:hover,
+form input[type = "text"]:focus,
+form input[type = "text"]:active
+{
+    padding-left: 5px;
+    border: 2px solid #1E3A8A;
+    border-radius: 5px;
+    outline: none;
+}
+
+form input[type = "date"]{
+    height: 30px;
+    width: 90%;
+}
+form input[type = "date"]:hover,
+form input[type = "date"]:focus,
+form input[type = "date"]:active{
+    border: 2px solid #1E3A8A;
+    border-radius: 5px;
+    outline: none;
+}
+form input[type = "number"]{
+    height: 30px;
+    width: 100px;
+}
+form input[type = "number"]:hover,
+form input[type = "number"]:focus,
+form input[type = "number"]:active{
+    padding-left: 5px;
+    border: 2px solid #1E3A8A;
+    border-radius: 5px;
+    outline: none;
+}
+
+form select{
+    height: 30px;
+    width: 100px;
+}
+form select[name = "name"]{
+    height: 30px;
+    width: 90%;
+}
+form select:hover,
+form select:focus,
+form select:active{
+    padding-left: 5px;
+    border: 2px solid #1E3A8A;
+    border-radius: 5px;
+    outline: none;
+}
+
+form textarea{
+    border-radius: 5px;
+    padding-left: 5px;
+}
+form textarea:hover,
+form textarea:focus,
+form textarea:active{
+    border: 2px solid #1E3A8A;
+    border-radius: 5px;
+    outline: none;
+}
+
+
+form button{
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    color: white;
+    background-color: #1E3A8A;
+    margin-top: 5px;
+}
+form button:hover{
+    background-color: #3B82F6;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+span.text{
+    font-size: large;
+    font-weight: bold;
+    color: #1E3A8A;
+    margin-top: 5px;
+}

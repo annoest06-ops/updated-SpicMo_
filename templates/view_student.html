@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard-admin.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <title>View Student</title>
+</head>
+<body>
+    <div id="page-grid">
+        <div class="page-header">
+            <nav id="top-nav">
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                            <img src="{{ url_for('static', filename='images/SpicMo_logo.png') }}" alt="">
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+                <div class="header-links-container">
+                    <a class="header-links" href="">
+                        <span>
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="main-content">
+                <aside>
+                    <a class="aside-link" href="{{url_for('homeroom_sheet')}}">
+                        <span class="icon"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                        <span class="icon-text">New Speech</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('homeroom_sheetb')}}">
+                        <span class="icon"><i class="fa fa-book" aria-hidden="true"></i></span>
+                        <span class="icon-text">Book Review</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('new_student')}}">
+                        <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                        <span class="icon-text">New Student</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('view_student')}}">
+                        <span class="icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                        <span class="icon-text">View Students</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('homeroom_report')}}">
+                        <span class="icon"><i class="fa fa-file-alt" aria-hidden="true"></i></span>
+                        <span class="icon-text">Create report</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('hm_setting')}}">
+                        <span class="icon"><i class="fa fa-gear" aria-hidden="true"></i></span>
+                        <span class="icon-text">Settings</span>
+                    </a>
+                    <a class="aside-link" href="{{url_for('logout')}}">
+                        <span class="icon"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+                        <span class="icon-text">Logout</span>
+                    </a>
+                </aside>
+                <main>
+                    <form action="/view_student" method="POST" id="filter-form">
+                        <select name="classes">
+                            <option value="">Class</option>
+                            <option value="FORM1">Form1</option>
+                            <option value="FORM2">Form2</option>
+                            <option value="FORM3">Form3</option>
+                            <option value="FORM4">Form4</option>
+                            <option value="FORM5">Form5</option>
+                            <option value="FORM6">Form6</option>
+                        </select>
+                        <select name="stream">
+                            <option value="">Stream</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="H">H</option>
+                        </select>
+                        <select name="circle">
+                            <option value="">Circle</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                        <select name="year_speech">
+                            <option value="">Year</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+                        </select>
+                        <button type="submit" class="button" name="search-records" value="Search">Search</button>
+                        <button type="reset" class="button" name="search-records" value="Clear">Clear</button>
+                    </form>
+                    <div class="dashboard-summary">
+                        <div class="summary-spans">
+                            <div class="summary-info">
+                                
+                            </div>
+                    </div>
+                    <br><br>
+                    <div class="dashboard-record-output">
+                        <fieldset>
+                            <table id="dashboard-record-output-table">
+                                <thead>
+                                    {%if first_catch%}
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Name</th>
+                                        <th>Class</th>
+                                        <th>Stream</th>
+                                        <th>Topic</th>
+                                        <th>Time</th>
+                                        <th>Round</th>
+                                        <th>Year</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    {%for data in first_catch%}
+                                    <tr>
+                                        <td>{{data.date_speech}}</td>
+                                        <td>{{data.name}}</td>
+                                        <td>{{data.classes}}</td>
+                                        <td>{{data.stream}}</td>
+                                        <td>{{data.topic}}</td>
+                                        <td>{{data.time_spent}}</td>
+                                        <td>{{data.round_circle}}</td>
+                                        <td>{{data.year_speech}}</td>
+                                    </tr>
+                                {%endfor%}
+                                {%endif%}
+                                {%if not first_catch%}
+                                <p>No data found.</p>
+                                {%endif%}
+                            </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+                </main>
+        </div>
+        <div class="footer">
+            <footer>@2026</footer>
+        </div>
+    </div>
+</body>
+</html>

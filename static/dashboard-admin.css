@@ -1,0 +1,54 @@
+/* dashboard record output*/
+.dashboard-record-output{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: auto;
+}
+.dashboard-record-output fieldset{
+    max-height: calc(100vh - 300px);
+    overflow: auto;
+    border: none;
+}
+
+#dashboard-record-output-table{
+    top: 20px;
+    width: 90%;
+    border: none;
+    border-collapse: separate;
+    border-radius: 5px;
+    table-layout: auto;
+    justify-self: center;
+}
+
+#dashboard-record-output-table caption{
+    color: #1E3A8A;
+    font-size: x-large;
+}
+
+#dashboard-record-output-table thead th{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    color: white;
+    background-color: #1E3A8A;
+}
+#dashboard-record-output-table td{
+    padding: 2px;
+}
+#dashboard-record-output-table tbody tr:nth-child(even){
+    background: #99b6e6;
+}
+#dashboard-record-output-table tbody tr td:first-child{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#dashboard-record-output-table tbody tr td:last-child{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#dashboard-record-output-table tbody tr:hover{
+    cursor: pointer;
+}
+
