@@ -3,10 +3,6 @@ from flask import Flask,request,redirect,render_template,session,url_for
 import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
-from dotenv import load_dotenv
-
-#load_dotenv()
-
 
 DATABASE_URL=os.getenv(
     "DATABASE_URL",
