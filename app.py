@@ -783,14 +783,6 @@ def preview_db_report(value):
         print('ERROR',e)
         return [],str(e)
 
-
-     
-
-
-@app.route('/logout')
-def logout():
-    session.clear()
-    return redirect(url_for('login'))
-
-if __name__=='__main__':
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
