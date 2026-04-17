@@ -298,8 +298,8 @@ def allocate():
     return render_template('new_hm.html')
 def insert_homeroom(values):
     sql="""
-     INSERT INTO manage_user(names,roles,classes,streams,passwords,round_circle,year)
-     VALUES(%s,%s,%s,%s,%s,%s,%s)
+     INSERT INTO manage_user(names,roles,classes,streams,passwords,round_circle)
+     VALUES(%s,%s,%s,%s,%s,%s)
 
 """
 
