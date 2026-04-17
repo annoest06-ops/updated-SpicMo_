@@ -107,6 +107,8 @@
                                         <th>Class</th>
                                         <th>Stream</th>
                                         <th>Score</th>
+                                        <th>Date</th>
+                                        <th>Year</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -115,16 +117,22 @@
                                     {%for data in hoorey%}
                                     <tr>
                                         <td>
-                                            <input type="text" name="name" value="{{data.name}}">
+                                            <input type="text" name="name" value="{{data.name}}" readonly>
                                         </td>
                                         <td>
-                                            <input type="text" name="class" value="{{data.classes}}">
+                                            <input type="text" name="class" value="{{data.classes}}" readonly>
                                         </td>
                                         <td>
-                                            <input type="text" name="stream" value="{{data.stream}}">
+                                            <input type="text" name="stream" value="{{data.stream}}" readonly>
                                         </td>
                                         <td>
-                                            <input type="text" name="score" value="{{data.total_score}}">
+                                            <input type="text" name="score" value="{{data.total_score}}" readonly>
+                                        </td>
+                                        <td>
+                                            <input type="date" name="date_report">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="year_sent" value="{{year}}" readonly>
                                         </td>
                                     </tr>
                                     {%endfor%}
@@ -135,7 +143,7 @@
                                     {%endif%}
                                </tbody>
                             </table>
-                            <button type="submit">Submit</button>
+                            <button type="submit" name="current_winner">Submit</button>
                             <br><br>
                         </form>
 
@@ -208,7 +216,7 @@
                                 <input type="date" name="date" placeholder="  --Date--">
                             </span>
                             <span>
-                                <button type="submit">Submit</button>
+                                <button type="submit" name="optional_winner">Submit</button>
                             </span>
                         </form>
                     </div>
