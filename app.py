@@ -709,13 +709,16 @@ def homeroom_report():
         set_catched=[name,classey,stream,round_circle,score,year_sent]
         first_winner(set_catched)
       elif 'optional_winner' in request.form:
-        namez=request.form.get('name')
-        reason=request.form.get('reason')
-        classez=request.form.get('class')
-        streamz=request.form.get('stream')
-        roundz=request.form.get('rounds')
+        name = request.form.get('name')
+        classey = request.form.get('class')
+        stream = request.form.get('stream')
+        round_circle = request.form.get('rounds')
+        score = request.form.get('score')
+        date_report = request.form.get('date_report')
+        year_sent = request.form.get('year_sent')
+
       
-        set_op=[namez,reason,classez,streamz,roundz]
+        set_catched=[name,classey,stream,score,round_circle,year_sent,date_report]
         option_db(set_op)
 
     return render_template('hm_report.html',classes=classes,streams=streams,rounds=rounds,names=names,year=year,hoorey=hoorey)
@@ -724,8 +727,8 @@ def homeroom_report():
 def first_winner(values):
     sql='''
 
-    INSERT INTO report_table(names,classes,stream,total_score,round_circle,year_sent)
-    VALUES(%s,%s,%s,%s,%s,%s)
+    INSERT INTO report_table(name,classes,stream,total_score,round_circle,year_sent,date_report)
+    VALUES(%s,%s,%s,%s,%s,%s,%s)
 
 '''
     try:
@@ -772,7 +775,7 @@ def preview_db_report(value):
         AND classes = %s
         AND round_circle = %s
     ORDER BY total_score DESC
-    LIMIT 3;
+    LIMIT 1;
 '''
    
     try:
