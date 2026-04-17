@@ -3,6 +3,10 @@ from flask import Flask,request,redirect,render_template,session,url_for
 import os
 import psycopg2
 from psycopg2.extras import RealDictCursor
+from dotenv import load_dotenv
+
+#load_dotenv()
+
 
 DATABASE_URL=os.getenv(
     "DATABASE_URL",
@@ -298,8 +302,8 @@ def allocate():
     return render_template('new_hm.html')
 def insert_homeroom(values):
     sql="""
-     INSERT INTO manage_user(names,roles,classes,streams,passwords,round_circle)
-     VALUES(%s,%s,%s,%s,%s,%s)
+     INSERT INTO manage_user(names,roles,classes,streams,passwords,round_circle,year)
+     VALUES(%s,%s,%s,%s,%s,%s,%s)
 
 """
 
@@ -537,16 +541,16 @@ def homeroom_sheet():
     if request.method=='POST':
 
         name=request.form.get('name')
-        classey=request.form.get('classey').strip()
-        streamey=request.form.get('streamey').strip()
+        classey=request.form.get('classey')
+        streamey=request.form.get('streamey')
         topic=request.form.get('topic').strip().upper()
         date_speech=request.form.get('date_speech')
         time_spent=request.form.get('time_spent').strip()
         time_grade=request.form.get('time_grade')
         speech_grade=request.form.get('speech_grade')
         comment=request.form.get('comment').strip().upper()
-        year_speech=request.form.get('year_speech').strip()
-        rounds=request.form.get('rounds').strip()
+        year_speech=request.form.get('year_speech')
+        rounds=request.form.get('rounds')
         total_score=int(time_grade)+int(speech_grade)
         
         value=[name,topic,date_speech,time_spent,time_grade,speech_grade,comment,year_speech,rounds,classey,streamey,total_score]
@@ -782,11 +786,15 @@ def preview_db_report(value):
     except Exception as e:
         print('ERROR',e)
         return [],str(e)
+
+
+     
+
+
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('login'))
-    
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
+
+if __name__=='__main__':
+    app.run(debug=True)
