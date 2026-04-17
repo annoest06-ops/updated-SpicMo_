@@ -44,7 +44,7 @@
                         <span class="icon"><i class="fa fa-book" aria-hidden="true"></i></span>
                         <span class="icon-text">Book Review</span>
                     </a>
-                    <a class="aside-link" href="{{url_for('homeroom_sheetb')}}">
+                    <a class="aside-link" href="">
                         <span class="icon"><i class="fa fa-language" aria-hidden="true"></i></span>
                         <span class="icon-text">Swahili Speakers</span>
                     </a>
@@ -118,6 +118,14 @@
                                         {%endif%}
                                     </select>
                                 </span>
+                                <span class="text">Class:</span>
+                                    <span class="input">
+                                        <input type="text" name="classey" value="{{classes}}" readonly>
+                                    </span>
+                                    <span class="text">Stream:</span>
+                                    <span class="input">
+                                        <input type="text" name="streamey" value="{{streams}}" readonly>
+                                    </span>
                                 <span class="text">Speech Title:</span>
                                 <span class="input">
                                     <input type="text" name="topic" required>
@@ -156,6 +164,14 @@
                                 <span class="input">
                                     <textarea name="comment" rows="3" cols="50" required></textarea>
                                 </span>
+                                <span class="text">Round:</span>
+                                    <span class="input">
+                                        <input type="text" name="rounds" readonly value="{{rounds}}">
+                                    </span>
+                                    <span class="text">Year:</span>
+                                    <span class="input">
+                                        <input type="text" name="year_speech" readonly value="{{year}}">
+                                    </span>
                                 <span class="button">
                                     <button onclick="validateNewSpeechForm()" type="submit">Save Speech</button>
                                     <button type="reset">Clear</button>
